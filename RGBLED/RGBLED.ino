@@ -9,6 +9,8 @@ int poti=0;
 
 int kapcs=2;
 
+bool mukodik=true;
+
 void setup() {
  pinMode(r, OUTPUT);
  pinMode(b, OUTPUT);
@@ -41,6 +43,9 @@ digitalWrite(b,0);
 
 
 void loop() {
+
+ if (mukodik){
+  
  
 
 poti=analogRead(A0);
@@ -54,9 +59,23 @@ analogWrite(g,fenyEro);
 poti=analogRead(A2);
 fenyEro=map (poti,0,1023,0,255);
 analogWrite(b,fenyEro);
+ }
+ else
+ {
+  digitalWrite(r,0);
+  digitalWrite(g,0);
+  digitalWrite(b,0);
+ }
 
-Serial.print("kapcsoló: ");
-Serial.println(digitalRead(kapcs));
+if(digitalRead(kapcs)==0)
+{
+  delay(100);
+  if (digitalRead(kapcs)==0){
+    mukodik=!mukodik;
+    Serial.println(mukodik);
+    }
+  
+  }
   /*Serial.print("Analóg érték: ");
   Serial.print(poti_3);
   Serial.print("; Fényerő: ");
