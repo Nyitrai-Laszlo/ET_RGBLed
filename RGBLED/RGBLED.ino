@@ -7,6 +7,7 @@ byte irany=1;
 
 int poti=0;
 
+int kapcs=2;
 
 void setup() {
  pinMode(r, OUTPUT);
@@ -15,6 +16,7 @@ void setup() {
 pinMode(A0, INPUT); Serial.begin(9600); 
 pinMode(A1,INPUT);
   pinMode(A2,INPUT);
+pinMode(kapcs, INPUT_PULLUP);
   
  digitalWrite(r,1); delay(500); 
  
@@ -53,6 +55,8 @@ poti=analogRead(A2);
 fenyEro=map (poti,0,1023,0,255);
 analogWrite(b,fenyEro);
 
+Serial.print("kapcsoló: ");
+Serial.println(digitalRead(kapcs));
   /*Serial.print("Analóg érték: ");
   Serial.print(poti_3);
   Serial.print("; Fényerő: ");
